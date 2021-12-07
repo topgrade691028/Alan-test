@@ -44,8 +44,7 @@ let controlBar;
 let insertButton;
 let deleteForm;
 let deleteButton;
-let searchForm;
-let searchButton;
+
 let lastMsg = '';
 let printOutput = '';
 let value;
@@ -53,19 +52,17 @@ let BST;
 let payload;
 
 function enableUI() {
-  insertButton.removeAttribute('disabled');
+  // insertButton.removeAttribute('disabled');
   deleteForm.removeAttribute('disabled');
   deleteButton.removeAttribute('disabled');
-  searchForm.removeAttribute('disabled');
-  searchButton.removeAttribute('disabled');
+
 }
 
 function disableUI() {
-  insertButton.attribute('disabled', '');
+  // insertButton.attribute('disabled', '');
   deleteForm.attribute('disabled', '');
   deleteButton.attribute('disabled', '');
-  searchForm.attribute('disabled', '');
-  searchButton.attribute('disabled', '');
+
 }
 
 function setAnimSpeed() {
@@ -96,24 +93,6 @@ function displayNode(curr) {
   }
 }
 
-function insert() {
-  lastMsg = '';
-  printOutput = '';
-  // value = parseInt(insertForm.value(), 10);
-  value =Math.floor(Math.random() * (100 + 100 + 1)) -100;
-  // insertForm.value('');
-  // if (isNaN(value) === true) return undefined;
-  disableUI();
-  payload = ['Insert', value, width];
-  BST.postMessage(payload); // send message 'Insert', inputted value and canvas width to ask the Tree to insert new element
-  BST.onmessage = function (event) {
-    tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
-    lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
-    if (event.data[2] === 'Finished') enableUI();
-  };
-  value="";
-  return 0;
-}
 
 function del() {
   lastMsg = '';
@@ -124,23 +103,6 @@ function del() {
   disableUI();
   payload = ['Delete', value];
   BST.postMessage(payload); // send message 'Delete' and inputted value to ask the Tree to delete an element
-  BST.onmessage = function (event) {
-    tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
-    lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
-    if (event.data[2] === 'Finished') enableUI();
-  };
-  return 0;
-}
-
-function find() {
-  lastMsg = '';
-  printOutput = '';
-  value = parseInt(searchForm.value(), 10);
-  searchForm.value('');
-  if (isNaN(value) === true) return undefined;
-  disableUI();
-  payload = ['Find', value];
-  BST.postMessage(payload); // send message 'Find' and inputted value to ask the Tree to find an element
   BST.onmessage = function (event) {
     tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
     lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
@@ -187,11 +149,31 @@ function setup() {
   controlDiv.id('controlSection');
   controlBar = createElement('table');
   controlDiv.child(controlBar);
-  insertButton = addControls('Button', 'Insert', insert);
+  document.addEventListener('keyup',event=>{
+    if(event.code ==="Space"){
+  lastMsg = '';
+  printOutput = '';
+  // value = parseInt(insertForm.value(), 10);
+  value =Math.floor(Math.random() * (100 + 100 + 1)) -100;
+  // insertForm.value('');
+  // if (isNaN(value) === true) return undefined;
+  disableUI();
+  payload = ['Insert', value, width];
+  BST.postMessage(payload); // send message 'Insert', inputted value and canvas width to ask the Tree to insert new element
+  BST.onmessage = function (event) {
+    tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
+    lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
+    if (event.data[2] === 'Finished') enableUI();
+  };
+  value="";
+  return 0;
+      
+    }
+  })
+  // insertButton = addControls('Button', 'Insert', insert);
   deleteForm = addControls('Input', '', '');
   deleteButton = addControls('Button', 'Delete', del);
-  searchForm = addControls('Input', '', '');
-  searchButton = addControls('Button', 'Find', find);
+
   // END VISUALIZATION CONTROLS STUFF
 
   // SET CANVAS AND TEXT SIZE
