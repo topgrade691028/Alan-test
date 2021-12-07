@@ -16,4 +16,10 @@ Before writing any code, please create a public GitHub repository and make an in
 <br/>
 Please send us the link to your GitHub repository after you’re done.
 
+// get start
+npm i -g local-web-server
+
+In folder, command line (ws)
+
+https://localhost:8000;
 
