@@ -19,7 +19,9 @@ Please send us the link to your GitHub repository after you’re done.
 // get start
 npm i -g local-web-server
 
-In folder, command line (ws)
+In folder, command line 
+
+_> ws 
 
 https://localhost:8000;
 
