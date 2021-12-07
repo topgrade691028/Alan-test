@@ -1,0 +1,52 @@
+body {
+	font: 100% Arial;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+  background: black;
+}
+
+.control-label {
+  margin: 0;
+  padding: 0; 
+  font-size: 15px;
+}
+
+#header {
+  padding: 0 10px 0 20px;
+  background: #006633; 
+}
+
+#header h1 {
+  margin: 0; 
+  padding: 10px 0; 
+  color: #ffffff;
+}
+
+#controlSection {
+  background: #006633; 
+}
+
+#footer {
+  bottom: 0px;
+  position: fixed;
+	padding: 0 10px;
+  width: 100%;
+  background: #006633; 
+  text-align: center;
+}
+
+#footer h2 {
+  margin: 0; 
+  padding: 10px 0; 
+  color: #ffffff;
+}
+
+#footer p {
+  color: #ffffff;
+  margin: 0;
+  padding: 10px 0; 
+}
+
+td {
+  vertical-align: middle;
+}
