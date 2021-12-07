@@ -151,26 +151,23 @@ function setup() {
   controlDiv.child(controlBar);
   document.addEventListener('keyup',event=>{
     if(event.code ==="Space"){
-  lastMsg = '';
-  printOutput = '';
-  // value = parseInt(insertForm.value(), 10);
-  value =Math.floor(Math.random() * (100 + 100 + 1)) -100;
-  // insertForm.value('');
-  // if (isNaN(value) === true) return undefined;
-  disableUI();
-  payload = ['Insert', value, width];
-  BST.postMessage(payload); // send message 'Insert', inputted value and canvas width to ask the Tree to insert new element
-  BST.onmessage = function (event) {
-    tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
-    lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
-    if (event.data[2] === 'Finished') enableUI();
-  };
-  value="";
-  return 0;
-      
+        lastMsg = '';
+        printOutput = '';
+
+        value =Math.floor(Math.random() * (100 + 100 + 1)) -100;
+
+        disableUI();
+        payload = ['Insert', value, width];
+        BST.postMessage(payload); // send message 'Insert', inputted value and canvas width to ask the Tree to insert new element
+        BST.onmessage = function (event) {
+          tree = event.data[0]; // receive our tree modifications from the BST so the browser's main thread can display changes at each step in the algo instead of the final change
+          lastMsg = event.data[1]; // also receive message from the BST after each step in the algorithm is done
+          if (event.data[2] === 'Finished') enableUI();
+        };
+        value="";
+        return 0;
     }
   })
-  // insertButton = addControls('Button', 'Insert', insert);
   deleteForm = addControls('Input', '', '');
   deleteButton = addControls('Button', 'Delete', del);
 
@@ -180,6 +177,24 @@ function setup() {
   const canvas = createCanvas(1280, 600);
   canvas.parent('mainContent');
   textSize(15);
+  // var elem = document.getElementById('defaultCanvas0');
+  // elemLeft = elem.offsetLeft ;
+  //  elemTop = elem.offsetTop ;
+  //  elements = [{top: 10, left: 10, width: 1}];
+  // elem.addEventListener('click', function(event) {
+
+  //    var x = event.pageX - elemLeft,
+  //     y = event.pageY - elemTop;
+  //     alert(x);
+  //     alert(y);
+  //      elements.forEach(function(element) {
+  //     if (y > element.top && y < element.top + element.height &&
+  //        x > element.left && x < element.left + element.width) {
+  //        alert('clicked an element');
+  //     }
+  //  });
+  // });
+
 }
 if(window!=self)
   setup();
