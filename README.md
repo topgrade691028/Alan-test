@@ -1,3 +1,4 @@
+![Screenshot_8](https://user-images.githubusercontent.com/88071912/144967311-394525ab-2d5c-41c6-a044-302d1463979a.png)
 Create a webpage with a binary search tree rendered on it. 
 <br/>
 ●By pressing the spacebar the webpage should generate a new number in the range [-100, 100] and add that number to the tree. 
